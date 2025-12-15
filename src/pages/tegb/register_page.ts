@@ -1,5 +1,6 @@
-import { Locator, Page, test } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { LoginPage } from "./login_page.ts";
+import { RegistrationForm } from "./types/form-fields/register_form.ts";
 
 export class RegistrationPage {
   readonly page: Page;
@@ -14,5 +15,17 @@ export class RegistrationPage {
     this.passwordInput = page.locator('[data-testid="password-input"]');
     this.emailInput = page.locator('[data-testid="email-input"]');
     this.registerButton = page.locator('[data-testid="submit-button"]');
+  }
+
+  async fillRegistrationForm(registrationFields: RegistrationForm) {
+    await this.usernameInput.fill(registrationFields.username);
+    await this.passwordInput.fill(registrationFields.password);
+    await this.emailInput.fill(registrationFields.email);
+    return this;
+  }
+
+  async clickRegisterButton() {
+    await this.registerButton.click();
+    return new LoginPage(this.page);
   }
 }
