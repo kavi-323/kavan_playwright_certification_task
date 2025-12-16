@@ -1,4 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
+import { CreateBankAccountRequest } from "../../types/tegb/api/create_bank_account_request.ts";
 
 export class CreateBankAccountApi {
   readonly request: APIRequestContext;
@@ -8,21 +9,14 @@ export class CreateBankAccountApi {
     this.request = request;
   }
 
-  async createBankAccountApi(
-    token: string,
-    startBalance: number,
-    type: string
-  ) {
+  async createBankAccountApi(token: string, data: CreateBankAccountRequest) {
     const response = await this.request.post(
       `${this.apiBaseURL}/tegb/accounts/create`,
       {
         headers: {
-          authorization: "bearer" + " " + token,
+          authorization: `Bearer ${token}`,
         },
-        data: {
-          startBalance,
-          type,
-        },
+        data,
       }
     );
     return response;

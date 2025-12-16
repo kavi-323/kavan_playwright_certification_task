@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { LoginPage } from "./login_page.ts";
-import { RegistrationForm } from "./types/form-fields/register_form.ts";
+import { RegistrationForm } from "../../types/tegb/form-fields/register_form.ts";
 
 export class RegistrationPage {
   readonly page: Page;

@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { RegistrationPage } from "./register_page.ts";
 import { DashboardPage } from "./dashboard_page.ts";
-import { LoginForm } from "./types/form-fields/login_form.ts";
+import { LoginForm } from "../../types/tegb/form-fields/login_form.ts";
 
 export class LoginPage {
   readonly page: Page;

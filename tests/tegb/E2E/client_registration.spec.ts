@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { faker } from "@faker-js/faker";
-import { UserApi } from "../../../src/api/tegb/user_api.ts";
+import { UserLoginApi } from "../../../src/api/tegb/user_login_api.ts";
 import { CreateBankAccountApi } from "../../../src/api/tegb/create_bank_account_api.ts";
 import { LoginPage } from "../../../src/pages/tegb/login_page.ts";
 
@@ -29,24 +29,22 @@ test("Register new client and Login E2E", async ({ page, request }) => {
     .then((register) => register.clickRegisterButton())
     .then((login) => login.checkSucessRegistrationMessage());
 
-  const userApi = new UserApi(request);
-  const loginResponse = await userApi.userLoginApi(username, password);
+  const userLoginApi = new UserLoginApi(request);
+  const loginResponse = await userLoginApi.userLoginApi(username, password);
   const loginResponseBody = await loginResponse.json();
   const accessToken = loginResponseBody.access_token;
   expect(loginResponseBody, "Login Response has access_token").toHaveProperty(
     "access_token"
   );
 
-  // * Změnit název souboru na Bank account api + class na bank account api, pouze meotdu nechat jako create
-  // * Nastavit faker na generování bank balance ať není hardcodováno
-
+  const startBalance: number = faker.number.int({ min: 0, max: 1_000_000 });
+  const type: string = faker.finance.accountName();
   const createBankAccountApi = new CreateBankAccountApi(request);
   const newBankAccountResponse =
-    await createBankAccountApi.createBankAccountApi(
-      accessToken,
-      10000,
-      "test-bank"
-    );
+    await createBankAccountApi.createBankAccountApi(accessToken, {
+      startBalance,
+      type,
+    });
   expect(
     newBankAccountResponse.status(),
     "Created Bank Account has 201 Status"
@@ -66,5 +64,12 @@ test("Register new client and Login E2E", async ({ page, request }) => {
         age,
       })
     )
-    .then((profile) => profile.clickSaveButton());
+    .then((profile) => profile.clickSaveButton())
+    .then((dashboard) =>
+      dashboard.verifyProfileData({ firstName, lastName, email, phone, age })
+    )
+    .then((dashboard) =>
+      dashboard.newBankAccountVerification({ startBalance, type })
+    )
+    .then((dashboard) => dashboard.clickLogoutButton());
 });

@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { ProfileDetailForm } from "./types/form-fields/profile_detail_form.ts";
+import { ProfileDetailForm } from "../../types/tegb/form-fields/profile_detail_form.ts";
 import { DashboardPage } from "./dashboard_page.ts";
 
 export class ProfileDetailPage {
