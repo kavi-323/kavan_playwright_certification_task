@@ -16,6 +16,7 @@ export class DashboardPage {
   readonly transactionsButton: Locator;
   readonly supportButton: Locator;
 
+  readonly profileDetailSection: Locator;
   readonly profileTitle: Locator;
   readonly editProfileButton: Locator;
   readonly firstNameValue: Locator;
@@ -54,6 +55,7 @@ export class DashboardPage {
       '//aside[contains(@class,"dashboard-sidebar")]//nav//li[4]'
     );
 
+    this.profileDetailSection = page.locator('[data-testid="account-summary"]');
     this.profileTitle = page.locator('[data-testid="profile-details-title"]');
     this.editProfileButton = page.locator(
       '[data-testid="toggle-edit-profile-button"]'
