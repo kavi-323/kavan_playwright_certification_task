@@ -50,4 +50,10 @@ export class LoginPage {
     await expect(this.succesRegisterMessage).toBeVisible();
     return this;
   }
+
+  async login(username: string, password: string) {
+    await this.open();
+    await this.fillLoginForm({ username, password });
+    return this.clickLoginButton();
+  }
 }

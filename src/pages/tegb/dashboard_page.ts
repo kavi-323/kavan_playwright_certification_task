@@ -32,7 +32,7 @@ export class DashboardPage {
   readonly accountBalanceValue: Locator;
   readonly accountNumberValue: Locator;
   readonly accountTypeValue: Locator;
-  readonly newAccountRow: Locator;
+  readonly accountRows: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -80,7 +80,7 @@ export class DashboardPage {
     this.accountNumberValue = page.locator('[data-testid="account-number"]');
     this.accountBalanceValue = page.locator('[data-testid="account-balance"]');
     this.accountTypeValue = page.locator('[data-testid="account-type"]');
-    this.newAccountRow = page.locator('[data-testid^="account-row"]');
+    this.accountRows = page.locator('[data-testid^="account-row"]');
   }
 
   async clickEditProfileButton() {
@@ -107,7 +107,7 @@ export class DashboardPage {
   async verifyNewBankAccount(expectedBalance: number) {
     const expectedBalanceFormatted = `${expectedBalance.toFixed(2)} Kč`;
     await expect(this.accountBalanceValue).toHaveText(expectedBalanceFormatted);
-    await expect(this.newAccountRow).toBeVisible();
+    await expect(this.accountRows).toBeVisible();
     return this;
   }
 }
