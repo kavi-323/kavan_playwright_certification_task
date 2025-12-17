@@ -40,11 +40,13 @@ test("Register new client and Login E2E", async ({ page, request }) => {
   const startBalance: number = faker.number.int({ min: 0, max: 1_000_000 });
   const type: string = faker.finance.accountName();
   const createBankAccountApi = new CreateBankAccountApi(request);
-  const newBankAccountResponse =
-    await createBankAccountApi.createBankAccount(accessToken, {
+  const newBankAccountResponse = await createBankAccountApi.createBankAccount(
+    accessToken,
+    {
       startBalance,
       type,
-    });
+    }
+  );
   expect(
     newBankAccountResponse.status(),
     "Created Bank Account has 201 Status"
