@@ -85,9 +85,7 @@ test.describe("Atomic Tests: Dashboard", () => {
       await expect.soft(dashboard.accountTypeHeader).toBeVisible();
       await expect.soft(dashboard.accountTypeHeader).toHaveText("Typ účtu");
     });
-  });
 
-  test("New Account Row (if exists)", async () => {
     await test.step("Account Row Visibility", async () => {
       await expect.soft(dashboard.accountRows.first()).toBeVisible();
     });
