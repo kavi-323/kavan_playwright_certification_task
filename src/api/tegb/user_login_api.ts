@@ -8,7 +8,7 @@ export class UserLoginApi {
     this.request = request;
   }
 
-  async userLoginApi(username: string, password: string) {
+  async userLogin(username: string, password: string) {
     const response = await this.request.post(`${this.apiBaseURL}/tegb/login`, {
       data: {
         username,

@@ -9,7 +9,7 @@ export class CreateBankAccountApi {
     this.request = request;
   }
 
-  async createBankAccountApi(token: string, data: CreateBankAccountRequest) {
+  async createBankAccount(token: string, data: CreateBankAccountRequest) {
     const response = await this.request.post(
       `${this.apiBaseURL}/tegb/accounts/create`,
       {

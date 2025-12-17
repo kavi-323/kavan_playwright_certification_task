@@ -30,7 +30,7 @@ test("Register new client and Login E2E", async ({ page, request }) => {
     .then((login) => login.checkSucessRegistrationMessage());
 
   const userLoginApi = new UserLoginApi(request);
-  const loginResponse = await userLoginApi.userLoginApi(username, password);
+  const loginResponse = await userLoginApi.userLogin(username, password);
   const loginResponseBody = await loginResponse.json();
   const accessToken = loginResponseBody.access_token;
   expect(loginResponseBody, "Login Response has access_token").toHaveProperty(
@@ -41,7 +41,7 @@ test("Register new client and Login E2E", async ({ page, request }) => {
   const type: string = faker.finance.accountName();
   const createBankAccountApi = new CreateBankAccountApi(request);
   const newBankAccountResponse =
-    await createBankAccountApi.createBankAccountApi(accessToken, {
+    await createBankAccountApi.createBankAccount(accessToken, {
       startBalance,
       type,
     });
@@ -68,8 +68,6 @@ test("Register new client and Login E2E", async ({ page, request }) => {
     .then((dashboard) =>
       dashboard.verifyProfileData({ firstName, lastName, email, phone, age })
     )
-    .then((dashboard) =>
-      dashboard.newBankAccountVerification({ startBalance, type })
-    )
+    .then((dashboard) => dashboard.verifyNewBankAccount(startBalance))
     .then((dashboard) => dashboard.clickLogoutButton());
 });

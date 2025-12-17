@@ -40,8 +40,9 @@ export class LoginPage {
   }
 
   async fillLoginForm(loginFields: LoginForm) {
-    await this.usernameInput.fill(loginFields.username);
-    await this.passwordInput.fill(loginFields.password);
+    const { username, password } = loginFields;
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
     return this;
   }
 

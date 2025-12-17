@@ -22,11 +22,12 @@ export class ProfileDetailPage {
   }
 
   async fillProfileDetailForm(profileFields: ProfileDetailForm) {
-    await this.firstNameInput.fill(profileFields.firstName);
-    await this.lastNameInput.fill(profileFields.lastName);
-    await this.emailInput.fill(profileFields.email);
-    await this.phoneInput.fill(profileFields.phone);
-    await this.ageInput.fill(profileFields.age);
+    const { firstName, lastName, email, phone, age } = profileFields;
+    await this.firstNameInput.fill(firstName);
+    await this.lastNameInput.fill(lastName);
+    await this.emailInput.fill(email);
+    await this.phoneInput.fill(phone);
+    await this.ageInput.fill(age);
     return this;
   }
 

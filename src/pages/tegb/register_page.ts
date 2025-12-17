@@ -18,9 +18,10 @@ export class RegistrationPage {
   }
 
   async fillRegistrationForm(registrationFields: RegistrationForm) {
-    await this.usernameInput.fill(registrationFields.username);
-    await this.passwordInput.fill(registrationFields.password);
-    await this.emailInput.fill(registrationFields.email);
+    const { username, password, email } = registrationFields;
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.emailInput.fill(email);
     return this;
   }
 
