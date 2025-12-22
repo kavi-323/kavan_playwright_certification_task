@@ -112,4 +112,13 @@ export class DashboardPage {
     await expect(this.accountRows).toBeVisible();
     return this;
   }
+
+  async verifyAccountBalance(accountBalance: number) {
+    const expectedAccountBalance = `${accountBalance.toFixed(2)} Kč`;
+    await expect(
+      this.accountBalanceValue,
+      `Account balance is ${accountBalance} Kč`
+    ).toHaveText(expectedAccountBalance);
+    return this;
+  }
 }

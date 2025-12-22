@@ -1,4 +1,4 @@
-import { Locator, Page, expect } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { LoginPage } from "./login_page.ts";
 import { RegistrationForm } from "../../types/tegb/form-fields/register_form.ts";
 
@@ -28,8 +28,5 @@ export class RegistrationPage {
   async clickRegisterButton() {
     await this.registerButton.click();
     return new LoginPage(this.page);
-    await expect(
-      this.page.locator('[data-testid="success-message"]')
-    ).toBeVisible();
   }
 }
