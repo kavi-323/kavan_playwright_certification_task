@@ -1,9 +1,10 @@
 import { APIRequestContext } from "@playwright/test";
 import { CreateBankAccountRequest } from "../../types/tegb/api/create_bank_account_request.ts";
+import { API_BASE_URL } from "../../config/tegb/env.ts";
 
 export class CreateBankAccountApi {
   readonly request: APIRequestContext;
-  readonly apiBaseURL = "https://tegb-backend-877a0b063d29.herokuapp.com";
+  readonly apiBaseURL = API_BASE_URL;
 
   constructor(request: APIRequestContext) {
     this.request = request;

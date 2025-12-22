@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ProfileDetailPage } from "./profile_detail_page.ts";
+import { EditUserProfileBox } from "./edit_user_profile_box.ts";
 import { LoginPage } from "./login_page.ts";
-import { ProfileDetailForm } from "../../types/tegb/form-fields/profile_detail_form.ts";
+import { UserProfileForm } from "../../types/tegb/form-fields/user_profile_detail_form.ts";
 
 export class DashboardPage {
   readonly page: Page;
@@ -86,9 +86,9 @@ export class DashboardPage {
   }
 
   async clickEditProfileButton() {
-    await expect(this.editProfileButton).toBeVisible({ timeout: 10000 });
+    await expect(this.editProfileButton).toBeVisible();
     await this.editProfileButton.click();
-    return new ProfileDetailPage(this.page);
+    return new EditUserProfileBox(this.page);
   }
 
   async clickLogoutButton() {
@@ -96,7 +96,7 @@ export class DashboardPage {
     return new LoginPage(this.page);
   }
 
-  async verifyProfileData(expected: ProfileDetailForm) {
+  async verifyProfileData(expected: UserProfileForm) {
     const { firstName, lastName, email, phone, age } = expected;
     await expect(this.firstNameValue).toContainText(firstName);
     await expect(this.lastNameValue).toContainText(lastName);

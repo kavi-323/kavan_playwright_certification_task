@@ -1,8 +1,8 @@
 import { Locator, Page } from "@playwright/test";
-import { ProfileDetailForm } from "../../types/tegb/form-fields/profile_detail_form.ts";
+import { UserProfileForm } from "../../types/tegb/form-fields/user_profile_detail_form.ts";
 import { DashboardPage } from "./dashboard_page.ts";
 
-export class ProfileDetailPage {
+export class EditUserProfileBox {
   readonly page: Page;
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
@@ -21,7 +21,7 @@ export class ProfileDetailPage {
     this.saveButton = page.locator('[data-testid="save-changes-button"]');
   }
 
-  async fillProfileDetailForm(profileFields: ProfileDetailForm) {
+  async fillProfileDetailForm(profileFields: UserProfileForm) {
     const { firstName, lastName, email, phone, age } = profileFields;
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);

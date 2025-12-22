@@ -1,8 +1,9 @@
 import { APIRequestContext } from "@playwright/test";
+import { API_BASE_URL } from "../../config/tegb/env.ts";
 
 export class UserLoginApi {
   readonly request: APIRequestContext;
-  readonly apiBaseURL = "https://tegb-backend-877a0b063d29.herokuapp.com";
+  readonly apiBaseURL = API_BASE_URL;
 
   constructor(request: APIRequestContext) {
     this.request = request;

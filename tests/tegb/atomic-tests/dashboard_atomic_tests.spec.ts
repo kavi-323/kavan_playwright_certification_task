@@ -2,12 +2,10 @@ import { test, expect } from "@playwright/test";
 import { DashboardPage } from "../../../src/pages/tegb/dashboard_page.ts";
 import { LoginPage } from "../../../src/pages/tegb/login_page.ts";
 
-// ! Add .env for login credentials
-
 test.describe("Atomic Tests: Dashboard", () => {
   let dashboard: DashboardPage;
-  const userLogin = "client.1";
-  const userPassword = "client1";
+  const userLogin = process.env.USERNAME as string;
+  const userPassword = process.env.PASSWORD as string;
 
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -89,11 +87,10 @@ test.describe("Atomic Tests: Dashboard", () => {
     await test.step("Account Row Visibility", async () => {
       await expect.soft(dashboard.accountRows.first()).toBeVisible();
     });
-    // ! Fix this test step
-    /* await test.step("Account Values", async () => {
+    await test.step("Account Values", async () => {
       await expect.soft(dashboard.accountNumberValue).toBeVisible();
       await expect.soft(dashboard.accountBalanceValue).toBeVisible();
       await expect.soft(dashboard.accountTypeValue).toBeVisible();
-    }); */
+    });
   });
 });

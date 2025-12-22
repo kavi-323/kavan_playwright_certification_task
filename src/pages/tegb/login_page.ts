@@ -11,7 +11,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly registerButton: Locator;
   readonly loginButton: Locator;
-  readonly succesRegisterMessage: Locator;
+  readonly successRegisterMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -19,7 +19,7 @@ export class LoginPage {
     this.passwordInput = page.locator('[data-testid="password-input"]');
     this.registerButton = page.locator('[data-testid="register-button"]');
     this.loginButton = page.locator('[data-testid="submit-button"]');
-    this.succesRegisterMessage = page.locator(
+    this.successRegisterMessage = page.locator(
       '[data-testid="success-message"]'
     );
   }
@@ -46,8 +46,8 @@ export class LoginPage {
     return this;
   }
 
-  async checkSucessRegistrationMessage() {
-    await expect(this.succesRegisterMessage).toBeVisible();
+  async checkSuccessRegistrationMessage() {
+    await expect(this.successRegisterMessage).toBeVisible();
     return this;
   }
 

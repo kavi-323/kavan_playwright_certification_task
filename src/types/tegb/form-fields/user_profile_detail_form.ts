@@ -1,4 +1,4 @@
-export type ProfileDetailForm = {
+export type UserProfileForm = {
   firstName: string;
   lastName: string;
   email: string;
