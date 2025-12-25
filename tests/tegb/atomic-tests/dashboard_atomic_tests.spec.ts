@@ -13,7 +13,7 @@ test.describe("Atomic Tests: Dashboard", () => {
     dashboard = await loginPage.login(userLogin, userPassword);
   });
 
-  test("Header Section", async () => {
+  test("Header Section & Logout", async () => {
     await test.step("Logo", async () => {
       await expect.soft(dashboard.logo).toBeVisible();
     });
@@ -25,7 +25,8 @@ test.describe("Atomic Tests: Dashboard", () => {
 
     await test.step("Logout Button", async () => {
       await expect.soft(dashboard.logoutButton).toBeVisible();
-      await dashboard.logoutButton.click();
+      const loginPage = await dashboard.clickLogoutButton();
+      await expect.soft(loginPage.loginForm).toBeVisible();
     });
   });
 
@@ -37,18 +38,34 @@ test.describe("Atomic Tests: Dashboard", () => {
     await test.step("Home Button", async () => {
       await expect.soft(dashboard.homeButton).toBeVisible();
     });
+    await test.step("Home Button Text", async () => {
+      await expect.soft(dashboard.homeButton).toHaveText("Domů");
+    });
 
     await test.step("Accounts Button", async () => {
       await expect.soft(dashboard.accountsButton).toBeVisible();
+    });
+    await test.step("Accounts Button Text", async () => {
+      await expect.soft(dashboard.accountsButton).toHaveText("Účty");
     });
 
     await test.step("Transactions Button", async () => {
       await expect.soft(dashboard.transactionsButton).toBeVisible();
     });
+    await test.step("Transactions Button Text", async () => {
+      await expect.soft(dashboard.transactionsButton).toHaveText("Transakce");
+    });
 
     await test.step("Support Button", async () => {
       await expect.soft(dashboard.supportButton).toBeVisible();
     });
+    await test.step("Support Button Text", async () => {
+      await expect.soft(dashboard.supportButton).toHaveText("Podpora");
+    });
+  });
+
+  test("Dashboard Section", async () => {
+    await expect.soft(dashboard.dashboardMainSection).toBeVisible();
   });
 
   test("Profile Section", async () => {
@@ -56,6 +73,10 @@ test.describe("Atomic Tests: Dashboard", () => {
       await expect.soft(dashboard.profileTitle).toBeVisible();
       await expect.soft(dashboard.profileTitle).toHaveText("Detaily Profilu");
       await expect.soft(dashboard.editProfileButton).toBeVisible();
+      const editUserProfileBox = await dashboard.clickEditProfileButton();
+      await expect.soft(editUserProfileBox.saveButton).toBeVisible();
+      await editUserProfileBox.cancelButton.click();
+      await expect.soft(dashboard.profileDetailSection).toBeVisible();
     });
 
     await test.step("Profile Values", async () => {

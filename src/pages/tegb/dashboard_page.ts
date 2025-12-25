@@ -16,6 +16,7 @@ export class DashboardPage {
   readonly transactionsButton: Locator;
   readonly supportButton: Locator;
 
+  readonly dashboardMainSection: Locator;
   readonly profileDetailSection: Locator;
   readonly profileTitle: Locator;
   readonly editProfileButton: Locator;
@@ -55,6 +56,9 @@ export class DashboardPage {
       '//aside[contains(@class,"dashboard-sidebar")]//nav//li[4]'
     );
 
+    this.dashboardMainSection = page.locator(
+      '[data-testid="dashboard-content"]'
+    );
     this.profileDetailSection = page.locator('[data-testid="account-summary"]');
     this.profileTitle = page.locator('[data-testid="profile-details-title"]');
     this.editProfileButton = page.locator(
@@ -91,7 +95,7 @@ export class DashboardPage {
     return new EditUserProfileBox(this.page);
   }
 
-  async clickLogoutButton() {
+  async clickLogoutButton(): Promise<LoginPage> {
     await this.logoutButton.click();
     return new LoginPage(this.page);
   }

@@ -10,6 +10,7 @@ export class EditUserProfileBox {
   readonly phoneInput: Locator;
   readonly ageInput: Locator;
   readonly saveButton: Locator;
+  readonly cancelButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -19,6 +20,9 @@ export class EditUserProfileBox {
     this.phoneInput = page.locator('[data-testid="chage-phone-input"]');
     this.ageInput = page.locator('[data-testid="chage-age-input"]');
     this.saveButton = page.locator('[data-testid="save-changes-button"]');
+    this.cancelButton = page.locator(
+      '[data-testid="toggle-edit-profile-button"]'
+    );
   }
 
   async fillProfileDetailForm(profileFields: UserProfileForm) {

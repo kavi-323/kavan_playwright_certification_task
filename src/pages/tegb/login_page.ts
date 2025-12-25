@@ -8,6 +8,7 @@ export class LoginPage {
   readonly page: Page;
   readonly url = FE_BASE_URL;
 
+  readonly loginForm: Locator;
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly registerButton: Locator;
@@ -16,6 +17,7 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
+    this.loginForm = page.locator('[data-testid="login-form"]');
     this.usernameInput = page.locator('[data-testid="username-input"]');
     this.passwordInput = page.locator('[data-testid="password-input"]');
     this.registerButton = page.locator('[data-testid="register-button"]');
