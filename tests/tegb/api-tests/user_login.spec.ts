@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import { UserLoginApi } from "../../../src/api/tegb/user_login_api.ts";
+import { TEST_USERS } from "../../../src/config/tegb/test_users.ts";
 
-const userLogin = process.env.USERNAME as string;
-const userPassword = process.env.PASSWORD as string;
+const userLogin = TEST_USERS.user.username;
+const userPassword = TEST_USERS.user.password;
 
 test.describe("User Login Test", () => {
   test("Response Assert", async ({ request }) => {

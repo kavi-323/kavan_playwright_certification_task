@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { DashboardPage } from "../../../src/pages/tegb/dashboard_page.ts";
 import { LoginPage } from "../../../src/pages/tegb/login_page.ts";
+import { TEST_USERS } from "../../../src/config/tegb/test_users.ts";
 
 test.describe("Atomic Tests: Dashboard", () => {
   let dashboard: DashboardPage;
-  const userLogin = process.env.USERNAME as string;
-  const userPassword = process.env.PASSWORD as string;
+  const userLogin = TEST_USERS.user.username;
+  const userPassword = TEST_USERS.user.password;
 
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
