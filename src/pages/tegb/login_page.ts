@@ -2,10 +2,11 @@ import { expect, Locator, Page } from "@playwright/test";
 import { RegistrationPage } from "./register_page.ts";
 import { DashboardPage } from "./dashboard_page.ts";
 import { LoginForm } from "../../types/tegb/form-fields/login_form.ts";
+import { FE_BASE_URL } from "../../config/tegb/env.ts";
 
 export class LoginPage {
   readonly page: Page;
-  readonly url = "https://tegb-frontend-88542200c6db.herokuapp.com/";
+  readonly url = FE_BASE_URL;
 
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
