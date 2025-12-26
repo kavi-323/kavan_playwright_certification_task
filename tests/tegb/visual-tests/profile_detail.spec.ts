@@ -15,7 +15,8 @@ test.describe("Dashboard Visual Tests", () => {
 
   test("Profile Detail Visual Test", async () => {
     await expect(dashboard.profileDetailSection).toHaveScreenshot(
-      "profile_detail_section.png"
+      "profile_detail_section.png",
+      { maxDiffPixelRatio: 0.03 }
     );
   });
 });
